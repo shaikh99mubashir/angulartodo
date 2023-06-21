@@ -1,18 +1,18 @@
 <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-
     <p>todo works!</p>
-    <div style=" width: 50%;" >
+    <div style=" width: 50%;">
         <input #todo placeholder="Add Todo" class="todoInput" />
-        <button (click)="onSave(todo.value, todo)" style="margin-left: 5px;">Add</button>
+        <button (click)="onSave(todo.value, todo)" style="margin-left: 5px;">{{buttonValue}}</button>
     </div>
 </div>
 
-    <div *ngIf="displayTodo.length > 0" style="display: flex; align-items: center;justify-content: center; flex-direction: column; margin-top: 20px;">
-        <li style="display: flex; justify-content: space-between; width: 70%; margin-top: 5px;"
-            *ngFor="let displayTodo of displayTodo ;let i = index">{{i+1}}. {{displayTodo }}
-            <div style="width: 30%;">
-                <button style="margin-right: 10px;" (click)="edit(i)">EDIT</button>
-                <button (click)="delete(i)">DEL</button>
-            </div>
-        </li>
-    </div>
+<div *ngIf="displayTodo.length > 0"
+    style="display: flex; align-items: center;justify-content: center; flex-direction: column; margin-top: 20px;">
+    <li style="display: flex; justify-content: space-between; width: 70%; margin-top: 5px;"
+        *ngFor="let displayTodo of displayTodo ;let i = index">{{i+1}}. {{displayTodo.value }}
+        <div style="width: 30%;">
+            <button style="margin-right: 10px;" (click)="edit(i,displayTodo,todo)">EDIT</button>
+            <button (click)="delete(i)">DEL</button>
+        </div>
+    </li>
+</div>
