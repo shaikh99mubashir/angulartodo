@@ -1,0 +1,25 @@
+ <p>reactive-form-control works!</p>
+
+<form [formGroup]="signUpForm" (ngSubmit)="getValue()">
+    <div style="display: flex; flex-direction: column; width: 50%; gap: 10px;">
+        <div *ngIf="isSubmitted" style="color: red; font-size: 10px;">Required Fields Are Missing</div>
+        <input formControlName="name" type="text" placeholder="name"
+            [ngClass]="{ 'error': isSubmitted && signUpForm.controls.name.errors?.['required'] }" />
+        <div *ngIf="isSubmitted && signUpForm.controls.name.errors?.['required']" style="color: red; font-size: 10px;">
+            name is required</div>
+        <div *ngIf="signUpForm.controls.name.errors?.['required'] && signUpForm.controls.name.touched"
+            style="color: red; font-size: 10px;">name is required</div>
+        <input formControlName="email" type="email" placeholder="email" [ngClass]="{ 'error': isSubmitted && signUpForm.controls.email.errors?.['required'] }" />
+        <div *ngIf="isSubmitted && signUpForm.controls.email.errors?.['required']" style="color: red; font-size: 10px;">
+            email is required</div>
+        <div style="color: red; font-size: 10px;"
+            *ngIf="signUpForm.controls.email.invalid && signUpForm.controls.email.touched">
+            InvalidEmail
+            <div *ngIf="signUpForm.controls.email.errors?.['required']" style="color: red; font-size: 10px;">email is
+                required</div>
+        </div>
+        <!-- <input formControlName="password" type="password" placeholder="password" /> -->
+        <!-- <div *ngIf="signUpForm.controls.password.errors?.['required'] && signUpForm.controls.password.touched" style="color: red; font-size: 10px;">Password is required</div> -->
+        <button type="submit" [ngClass]="'button'">submit</button>
+    </div>
+</form>
